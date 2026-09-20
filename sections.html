@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sections — form-styles</title>
+<meta name="description" content="Full page sections that pair a form with something else: contact info, a map, an FAQ, a newsletter band.">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+  @theme {
+    --color-ink: #1a1a2e;
+    --color-paper: #fafafa;
+    --color-brand-50: #eef2ff;
+    --color-brand-500: #4f46e5;
+    --color-brand-600: #4338ca;
+  }
+</style>
+<script>
+  // Applied before paint, from a plain <script> (not the "text/tailwindcss" block above, which
+  // only ever holds CSS, never runs as JS) so the toggle below reflects a saved choice on load
+  // instead of flashing light mode for a moment first.
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark')
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<style>
+  pre[class*="language-"] { border-radius: 0; font-size: 0.8125rem; }
+</style>
+</head>
+<body class="bg-paper text-ink antialiased dark:bg-ink dark:text-paper">
+<nav class="sticky top-0 z-10 border-b border-ink/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-ink/90">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="index.html" class="font-bold tracking-tight">form-styles</a>
+    <div class="flex items-center gap-5 text-sm font-medium">
+      <a href="inputs.html" class="hover:text-brand-600">Inputs</a>
+      <a href="states.html" class="hover:text-brand-600">States</a>
+      <a href="layouts.html" class="hover:text-brand-600">Layouts</a>
+      <a href="sections.html" class="hover:text-brand-600">Sections</a>
+      <a href="https://github.com/BootForm/form-styles" class="hover:text-brand-600">GitHub ↗</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
+              class="rounded-md border border-ink/10 px-2 py-1 text-xs dark:border-white/20">
+        <span class="dark:hidden">Dark</span>
+        <span class="hidden dark:inline">Light</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="mx-auto max-w-3xl px-6 py-12">
+<h1 class="text-3xl font-bold tracking-tight">Sections</h1>
+<p class="mt-3 text-ink/70 dark:text-white/70">The thing you'd actually paste onto a contact page, not just a bare form.</p>
+
+  <section id="form-contact-info" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Form + contact info</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Contact details on one side, the form on the other; stacked on mobile. What most of the BootForm VitePress templates' own contact pages use:</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="mx-auto grid max-w-4xl gap-12 px-6 py-16 md:grid-cols-2">
+
+  <div class="flex flex-col gap-6">
+    <h2 class="text-sm font-semibold uppercase tracking-widest opacity-50">Get in touch directly</h2>
+
+    <div class="flex items-start gap-3">
+      <span class="mt-0.5 text-brand-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="font-medium">Based in Portland, OR</p>
+        <a href="https://maps.google.com/?q=Portland,OR" target="_blank" rel="noopener" class="text-sm text-brand-500 hover:underline">Get directions ↗</a>
+      </div>
+    </div>
+
+    <div class="flex items-start gap-3">
+      <span class="mt-0.5 text-brand-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      </span>
+      <div>
+        <p class="font-medium">Call or text</p>
+        <a href="tel:+15555550123" class="text-sm text-brand-500 hover:underline">+1 (555) 555-0123</a>
+      </div>
+    </div>
+
+    <div class="flex items-start gap-3">
+      <span class="mt-0.5 text-brand-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </span>
+      <div>
+        <p class="font-medium">Email</p>
+        <a href="mailto:hello@example.com" class="text-sm text-brand-500 hover:underline">hello@example.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+    <form action="https://f.bootform.com/{form_id}" method="POST" class="flex flex-col gap-4">
+      <!-- fields -->
+    </form>
+  </div>
+
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;mx-auto grid max-w-4xl gap-12 px-6 py-16 md:grid-cols-2&quot;&gt;
+
+  &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
+    &lt;h2 class=&quot;text-sm font-semibold uppercase tracking-widest opacity-50&quot;&gt;Get in touch directly&lt;/h2&gt;
+
+    &lt;div class=&quot;flex items-start gap-3&quot;&gt;
+      &lt;span class=&quot;mt-0.5 text-brand-500&quot;&gt;
+        &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z&quot;/&gt;&lt;circle cx=&quot;12&quot; cy=&quot;10&quot; r=&quot;3&quot;/&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;div&gt;
+        &lt;p class=&quot;font-medium&quot;&gt;Based in Portland, OR&lt;/p&gt;
+        &lt;a href=&quot;https://maps.google.com/?q=Portland,OR&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; class=&quot;text-sm text-brand-500 hover:underline&quot;&gt;Get directions ↗&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;flex items-start gap-3&quot;&gt;
+      &lt;span class=&quot;mt-0.5 text-brand-500&quot;&gt;
+        &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z&quot;/&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;div&gt;
+        &lt;p class=&quot;font-medium&quot;&gt;Call or text&lt;/p&gt;
+        &lt;a href=&quot;tel:+15555550123&quot; class=&quot;text-sm text-brand-500 hover:underline&quot;&gt;+1 (555) 555-0123&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;flex items-start gap-3&quot;&gt;
+      &lt;span class=&quot;mt-0.5 text-brand-500&quot;&gt;
+        &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;2&quot; y=&quot;4&quot; width=&quot;20&quot; height=&quot;16&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7&quot;/&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;div&gt;
+        &lt;p class=&quot;font-medium&quot;&gt;Email&lt;/p&gt;
+        &lt;a href=&quot;mailto:hello@example.com&quot; class=&quot;text-sm text-brand-500 hover:underline&quot;&gt;hello@example.com&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8&quot;&gt;
+    &lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;flex flex-col gap-4&quot;&gt;
+      &lt;!-- fields --&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="form-map" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Form + map</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The form on one side, a location on the other, as an embedded Google Map instead of a plain address line. <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">loading="lazy"</code> keeps an off-screen map from slowing down the rest of the page:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Get the real <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">src</code> value from Google Maps' own <strong>Share → Embed a map</strong> dialog for the actual location; the <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">!1m18!1m12!1m3!1d...</code> string above is a placeholder, not a working map.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="mx-auto grid max-w-4xl gap-8 px-6 py-16 md:grid-cols-2">
+
+  <div class="overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..."
+      width="100%" height="100%" style="border:0" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="h-full min-h-[320px] w-full"
+    ></iframe>
+  </div>
+
+  <div class="rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+    <form action="https://f.bootform.com/{form_id}" method="POST" class="flex flex-col gap-4">
+      <!-- fields -->
+    </form>
+  </div>
+
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;mx-auto grid max-w-4xl gap-8 px-6 py-16 md:grid-cols-2&quot;&gt;
+
+  &lt;div class=&quot;overflow-hidden rounded-xl border border-black/10 dark:border-white/10&quot;&gt;
+    &lt;iframe
+      src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d...&quot;
+      width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;border:0&quot; loading=&quot;lazy&quot;
+      referrerpolicy=&quot;no-referrer-when-downgrade&quot;
+      class=&quot;h-full min-h-[320px] w-full&quot;
+    &gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8&quot;&gt;
+    &lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;flex flex-col gap-4&quot;&gt;
+      &lt;!-- fields --&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="form-faq" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Form + FAQ</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A form next to (or below) a short FAQ, for a page where the form's job is catching whatever questions the FAQ didn't answer, common on a pricing or support page:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A plain <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;details&gt;</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;summary&gt;</code> needs no JavaScript for the open/close behavior at all; only add a library if the design calls for an animated open/close transition, which <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;details&gt;</code> doesn't do natively in most browsers yet.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="mx-auto grid max-w-5xl gap-12 px-6 py-16 md:grid-cols-2">
+
+  <div class="flex flex-col gap-6">
+    <h2 class="text-2xl font-bold tracking-tight">Common questions</h2>
+    <details class="group rounded-lg border border-black/10 p-4 dark:border-white/10">
+      <summary class="cursor-pointer list-none font-medium marker:content-none">
+        How quickly do you reply?
+      </summary>
+      <p class="mt-2 text-sm opacity-70">Within a day, usually the same one.</p>
+    </details>
+    <details class="group rounded-lg border border-black/10 p-4 dark:border-white/10">
+      <summary class="cursor-pointer list-none font-medium marker:content-none">
+        Do you work with businesses outside the US?
+      </summary>
+      <p class="mt-2 text-sm opacity-70">Yes, remote work with any timezone.</p>
+    </details>
+  </div>
+
+  <div class="rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+    <h2 class="mb-4 text-2xl font-bold tracking-tight">Still have a question?</h2>
+    <form action="https://f.bootform.com/{form_id}" method="POST" class="flex flex-col gap-4">
+      <!-- fields -->
+    </form>
+  </div>
+
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;mx-auto grid max-w-5xl gap-12 px-6 py-16 md:grid-cols-2&quot;&gt;
+
+  &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
+    &lt;h2 class=&quot;text-2xl font-bold tracking-tight&quot;&gt;Common questions&lt;/h2&gt;
+    &lt;details class=&quot;group rounded-lg border border-black/10 p-4 dark:border-white/10&quot;&gt;
+      &lt;summary class=&quot;cursor-pointer list-none font-medium marker:content-none&quot;&gt;
+        How quickly do you reply?
+      &lt;/summary&gt;
+      &lt;p class=&quot;mt-2 text-sm opacity-70&quot;&gt;Within a day, usually the same one.&lt;/p&gt;
+    &lt;/details&gt;
+    &lt;details class=&quot;group rounded-lg border border-black/10 p-4 dark:border-white/10&quot;&gt;
+      &lt;summary class=&quot;cursor-pointer list-none font-medium marker:content-none&quot;&gt;
+        Do you work with businesses outside the US?
+      &lt;/summary&gt;
+      &lt;p class=&quot;mt-2 text-sm opacity-70&quot;&gt;Yes, remote work with any timezone.&lt;/p&gt;
+    &lt;/details&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8&quot;&gt;
+    &lt;h2 class=&quot;mb-4 text-2xl font-bold tracking-tight&quot;&gt;Still have a question?&lt;/h2&gt;
+    &lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;flex flex-col gap-4&quot;&gt;
+      &lt;!-- fields --&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter-band" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Newsletter band</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A single-field, full-width band, usually placed between a page's main content and its footer, not a full contact section:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The input and button are inverted (white background, brand-colored text/no border) here, the same deliberate exception used on every BootForm template's own call-to-action button: they sit on a brand-colored surface, so inverting them is what keeps them legible, not a contradiction of the usual pattern.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="bg-brand-500 px-6 py-12 text-center">
+  <h2 class="text-2xl font-bold tracking-tight text-white">Get updates by email</h2>
+  <p class="mx-auto mt-2 max-w-md text-white/80">One email a month, no spam, unsubscribe anytime.</p>
+  <form action="https://f.bootform.com/{form_id}" method="POST" class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row">
+    <input name="email" type="email" required placeholder="you@example.com"
+           class="flex-1 rounded-md border-0 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-white/50">
+    <button type="submit" class="rounded-md bg-white px-5 py-2 font-medium text-brand-600 hover:bg-white/90">Subscribe</button>
+  </form>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;bg-brand-500 px-6 py-12 text-center&quot;&gt;
+  &lt;h2 class=&quot;text-2xl font-bold tracking-tight text-white&quot;&gt;Get updates by email&lt;/h2&gt;
+  &lt;p class=&quot;mx-auto mt-2 max-w-md text-white/80&quot;&gt;One email a month, no spam, unsubscribe anytime.&lt;/p&gt;
+  &lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row&quot;&gt;
+    &lt;input name=&quot;email&quot; type=&quot;email&quot; required placeholder=&quot;you@example.com&quot;
+           class=&quot;flex-1 rounded-md border-0 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-white/50&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;rounded-md bg-white px-5 py-2 font-medium text-brand-600 hover:bg-white/90&quot;&gt;Subscribe&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="border-t border-ink/10 px-6 py-8 text-center text-sm text-ink/50 dark:border-white/10">
+  Built by <a href="https://bootform.com" class="underline">BootForm</a>. Part of the
+  <a href="https://github.com/BootForm" class="underline">github.com/BootForm</a> org: free templates
+  and a working contact form for whatever you build.
+</footer>
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+<script>
+  // A hand-rolled copy button instead of Prism's own copy-to-clipboard plugin: that plugin
+  // relies on the deprecated document.execCommand('copy'), which modern Chrome frequently
+  // refuses silently, falling back to a "Press Ctrl+C to copy" message instead of copying
+  // anything. navigator.clipboard.writeText() is the reliable modern equivalent.
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.closest('.code-block').querySelector('code').textContent
+      try {
+        await navigator.clipboard.writeText(code)
+        btn.textContent = 'Copied!'
+      } catch {
+        btn.textContent = 'Press Ctrl+C'
+      }
+      setTimeout(() => { btn.textContent = 'Copy' }, 1500)
+    })
+  })
+</script>
+</body>
+</html>

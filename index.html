@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>form-styles — copy-paste Tailwind CSS for forms</title>
+<meta name="description" content="Live, copy-paste Tailwind CSS examples for making a form look right: input types, states, layouts, and full sections.">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+  @theme {
+    --color-ink: #1a1a2e;
+    --color-paper: #fafafa;
+    --color-brand-50: #eef2ff;
+    --color-brand-500: #4f46e5;
+    --color-brand-600: #4338ca;
+  }
+</style>
+<script>
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark')
+</script>
+</head>
+<body class="bg-paper text-ink antialiased dark:bg-ink dark:text-paper">
+
+<nav class="sticky top-0 z-10 border-b border-ink/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-ink/90">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="index.html" class="font-bold tracking-tight">form-styles</a>
+    <div class="flex items-center gap-5 text-sm font-medium">
+      <a href="inputs.html" class="hover:text-brand-600">Inputs</a>
+      <a href="states.html" class="hover:text-brand-600">States</a>
+      <a href="layouts.html" class="hover:text-brand-600">Layouts</a>
+      <a href="sections.html" class="hover:text-brand-600">Sections</a>
+      <a href="https://github.com/BootForm/form-styles" class="hover:text-brand-600">GitHub ↗</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
+              class="rounded-md border border-ink/10 px-2 py-1 text-xs dark:border-white/20">
+        <span class="dark:hidden">Dark</span>
+        <span class="hidden dark:inline">Light</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ───── Hero ───── -->
+<div class="mx-auto max-w-3xl px-6 py-20 text-center">
+  <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Make your form look right</h1>
+  <p class="mx-auto mt-4 max-w-xl text-lg text-ink/70 dark:text-white/70">
+    Copy-paste Tailwind CSS for forms: real input types, real states, real layouts.
+    Every example renders live on this page, next to the exact code behind it.
+  </p>
+  <p class="mt-2 text-sm text-ink/50 dark:text-white/50">
+    Backend-agnostic. Drops into a <a href="https://bootform.com" class="underline">BootForm</a>
+    form, any other backend, or one that doesn't submit anywhere yet.
+  </p>
+</div>
+
+<!-- ───── Category cards ───── -->
+<div class="mx-auto grid max-w-5xl gap-6 px-6 pb-20 sm:grid-cols-2">
+
+  <a href="inputs.html" class="group rounded-xl border border-ink/10 p-6 transition hover:border-brand-500 dark:border-white/10">
+    <h2 class="text-lg font-bold group-hover:text-brand-600">Inputs →</h2>
+    <p class="mt-2 text-sm text-ink/70 dark:text-white/70">Date, number, phone, file upload, select, radio group, checkbox group.</p>
+  </a>
+
+  <a href="states.html" class="group rounded-xl border border-ink/10 p-6 transition hover:border-brand-500 dark:border-white/10">
+    <h2 class="text-lg font-bold group-hover:text-brand-600">States →</h2>
+    <p class="mt-2 text-sm text-ink/70 dark:text-white/70">Focus, validation and error, success, submitting, and dark mode.</p>
+  </a>
+
+  <a href="layouts.html" class="group rounded-xl border border-ink/10 p-6 transition hover:border-brand-500 dark:border-white/10">
+    <h2 class="text-lg font-bold group-hover:text-brand-600">Layouts →</h2>
+    <p class="mt-2 text-sm text-ink/70 dark:text-white/70">Stacked, floating label, card, inline, and two-column grid arrangements.</p>
+  </a>
+
+  <a href="sections.html" class="group rounded-xl border border-ink/10 p-6 transition hover:border-brand-500 dark:border-white/10">
+    <h2 class="text-lg font-bold group-hover:text-brand-600">Sections →</h2>
+    <p class="mt-2 text-sm text-ink/70 dark:text-white/70">A form paired with contact info, an embedded map, an FAQ, or a newsletter band.</p>
+  </a>
+
+</div>
+
+<!-- ───── Before you copy ───── -->
+<div class="mx-auto max-w-3xl px-6 pb-20">
+  <div class="rounded-xl border border-ink/10 bg-brand-50 p-6 dark:border-white/10 dark:bg-brand-500/10">
+    <h2 class="font-bold">Before you copy a snippet</h2>
+    <p class="mt-2 text-sm text-ink/70 dark:text-white/70">
+      Every <code class="rounded bg-white px-1 py-0.5 text-[0.85em] dark:bg-black/20">&lt;form&gt;</code> here uses
+      <code class="rounded bg-white px-1 py-0.5 text-[0.85em] dark:bg-black/20">action="https://f.bootform.com/{form_id}"</code>
+      as a stand-in. Replace <code class="rounded bg-white px-1 py-0.5 text-[0.85em] dark:bg-black/20">{form_id}</code>
+      with your own, or swap the <code class="rounded bg-white px-1 py-0.5 text-[0.85em] dark:bg-black/20">action</code>
+      and field names for whatever backend you're actually using; the styling doesn't care which.
+      See <a href="https://github.com/BootForm/contact-form-recipes" class="underline">contact-form-recipes</a>
+      for wiring the actual submission per static site generator.
+    </p>
+  </div>
+</div>
+
+<footer class="border-t border-ink/10 px-6 py-8 text-center text-sm text-ink/50 dark:border-white/10">
+  Built by <a href="https://bootform.com" class="underline">BootForm</a>. Part of the
+  <a href="https://github.com/BootForm" class="underline">github.com/BootForm</a> org: free templates
+  and a working contact form for whatever you build.
+</footer>
+
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inputs — form-styles</title>
+<meta name="description" content="Special input types for forms: date, number, phone, file upload, select, radio, checkbox.">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+  @theme {
+    --color-ink: #1a1a2e;
+    --color-paper: #fafafa;
+    --color-brand-50: #eef2ff;
+    --color-brand-500: #4f46e5;
+    --color-brand-600: #4338ca;
+  }
+</style>
+<script>
+  // Applied before paint, from a plain <script> (not the "text/tailwindcss" block above, which
+  // only ever holds CSS, never runs as JS) so the toggle below reflects a saved choice on load
+  // instead of flashing light mode for a moment first.
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark')
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<style>
+  pre[class*="language-"] { border-radius: 0; font-size: 0.8125rem; }
+</style>
+</head>
+<body class="bg-paper text-ink antialiased dark:bg-ink dark:text-paper">
+<nav class="sticky top-0 z-10 border-b border-ink/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-ink/90">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="index.html" class="font-bold tracking-tight">form-styles</a>
+    <div class="flex items-center gap-5 text-sm font-medium">
+      <a href="inputs.html" class="hover:text-brand-600">Inputs</a>
+      <a href="states.html" class="hover:text-brand-600">States</a>
+      <a href="layouts.html" class="hover:text-brand-600">Layouts</a>
+      <a href="sections.html" class="hover:text-brand-600">Sections</a>
+      <a href="https://github.com/BootForm/form-styles" class="hover:text-brand-600">GitHub ↗</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
+              class="rounded-md border border-ink/10 px-2 py-1 text-xs dark:border-white/20">
+        <span class="dark:hidden">Dark</span>
+        <span class="hidden dark:inline">Light</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="mx-auto max-w-3xl px-6 py-12">
+<h1 class="text-3xl font-bold tracking-tight">Inputs</h1>
+<p class="mt-3 text-ink/70 dark:text-white/70">Special input types a plain <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em]">&lt;input&gt;</code> alone usually looks wrong for.</p>
+
+  <section id="baseline" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Baseline</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The baseline every other input on this page starts from: an explicit border color (not an opacity-based one like <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">border-black/15</code>, which reads as invisible against most backgrounds), a visible focus ring, and an explicit background so dark mode doesn't leave the field blending into the page behind it.</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Swap <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">brand-500</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">brand-600</code> for whatever primary color the site actually defines; every example below assumes those two utilities exist.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="name" class="text-sm font-medium">Your name</label>
+  <input id="name" name="name" type="text" required
+         class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;name&quot; class=&quot;text-sm font-medium&quot;&gt;Your name&lt;/label&gt;
+  &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; required
+         class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="date" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Date</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A native <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;input type="date"&gt;</code> picks up this exact same styling; no JavaScript date-picker library needed unless the design calls for a range picker or a non-native calendar UI:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">dark:[color-scheme:dark]</code> fixes the native calendar icon and popup rendering as black-on-black in dark mode; without it, the picker itself still uses light-mode colors even though the field around it doesn't.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="move-in" class="text-sm font-medium">Preferred date</label>
+  <input id="move-in" name="move_in_date" type="date" required
+         class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5 dark:[color-scheme:dark]">
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;move-in&quot; class=&quot;text-sm font-medium&quot;&gt;Preferred date&lt;/label&gt;
+  &lt;input id=&quot;move-in&quot; name=&quot;move_in_date&quot; type=&quot;date&quot; required
+         class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5 dark:[color-scheme:dark]&quot;&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="number" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Number</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A quantity or count field. Same base styling, plus <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">min</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">max</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">step</code> for real validation instead of just a visual hint:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">w-24</code> instead of a full-width field: a number this short doesn't need the same width as an email field, and a full-width number input reads oddly.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="guests" class="text-sm font-medium">Number of guests</label>
+  <input id="guests" name="guests" type="number" min="1" max="20" step="1" required
+         class="w-24 rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;guests&quot; class=&quot;text-sm font-medium&quot;&gt;Number of guests&lt;/label&gt;
+  &lt;input id=&quot;guests&quot; name=&quot;guests&quot; type=&quot;number&quot; min=&quot;1&quot; max=&quot;20&quot; step=&quot;1&quot; required
+         class=&quot;w-24 rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="phone" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Phone</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">tel</code> input, not <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">text</code>, gets phone-appropriate mobile keyboards for free and lets <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">pattern</code> validate a rough shape without a JavaScript library:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A separate country-code <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;select&gt;</code> next to this field is a common upgrade; skip it unless the site actually serves multiple countries; it's one more required decision for most visitors.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="phone" class="text-sm font-medium">Phone number</label>
+  <input id="phone" name="phone" type="tel" autocomplete="tel"
+         pattern="[0-9+()\-\s]{7,}" placeholder="+1 (555) 555-0123"
+         class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;phone&quot; class=&quot;text-sm font-medium&quot;&gt;Phone number&lt;/label&gt;
+  &lt;input id=&quot;phone&quot; name=&quot;phone&quot; type=&quot;tel&quot; autocomplete=&quot;tel&quot;
+         pattern=&quot;[0-9+()\-\s]{7,}&quot; placeholder=&quot;+1 (555) 555-0123&quot;
+         class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="file-upload" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">File upload</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Native <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;input type="file"&gt;</code> is nearly impossible to style directly across browsers; the reliable pattern is hiding it and styling a <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;label&gt;</code> that triggers it instead:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">sr-only</code> (a standard Tailwind utility: visually hidden, still in the accessibility tree and still focusable/keyboard-operable) rather than <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">hidden</code>, which would also remove it from tab order and break keyboard users entirely.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <span class="text-sm font-medium">Resume</span>
+  <label for="resume" class="flex w-fit cursor-pointer items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-gray-600 dark:bg-white/5 dark:hover:bg-white/10">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M9.25 13.25a.75.75 0 0 0 1.5 0V4.66l2.1 2.1a.75.75 0 1 0 1.06-1.06l-3.38-3.38a.75.75 0 0 0-1.06 0L6.09 5.7a.75.75 0 0 0 1.06 1.06l2.1-2.1v8.59Z"/><path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z"/></svg>
+    <span id="resume-filename">Choose a file</span>
+  </label>
+  <input id="resume" name="resume" type="file" required class="sr-only">
+</div>
+
+<script>
+  document.getElementById('resume').addEventListener('change', (event) => {
+    document.getElementById('resume-filename').textContent = event.target.files[0]?.name ?? 'Choose a file'
+  })
+</script>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;span class=&quot;text-sm font-medium&quot;&gt;Resume&lt;/span&gt;
+  &lt;label for=&quot;resume&quot; class=&quot;flex w-fit cursor-pointer items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-gray-600 dark:bg-white/5 dark:hover:bg-white/10&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;currentColor&quot; class=&quot;size-4&quot;&gt;&lt;path d=&quot;M9.25 13.25a.75.75 0 0 0 1.5 0V4.66l2.1 2.1a.75.75 0 1 0 1.06-1.06l-3.38-3.38a.75.75 0 0 0-1.06 0L6.09 5.7a.75.75 0 0 0 1.06 1.06l2.1-2.1v8.59Z&quot;/&gt;&lt;path d=&quot;M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z&quot;/&gt;&lt;/svg&gt;
+    &lt;span id=&quot;resume-filename&quot;&gt;Choose a file&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;input id=&quot;resume&quot; name=&quot;resume&quot; type=&quot;file&quot; required class=&quot;sr-only&quot;&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  document.getElementById(&#x27;resume&#x27;).addEventListener(&#x27;change&#x27;, (event) =&gt; {
+    document.getElementById(&#x27;resume-filename&#x27;).textContent = event.target.files[0]?.name ?? &#x27;Choose a file&#x27;
+  })
+&lt;/script&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="select" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Select</h2>
+    
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="budget" class="text-sm font-medium">Budget range</label>
+  <select id="budget" name="budget" required
+          class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+    <option value="" disabled selected>Choose one</option>
+    <option value="under-1k">Under $1,000</option>
+    <option value="1k-5k">$1,000 - $5,000</option>
+    <option value="5k-plus">$5,000+</option>
+  </select>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;budget&quot; class=&quot;text-sm font-medium&quot;&gt;Budget range&lt;/label&gt;
+  &lt;select id=&quot;budget&quot; name=&quot;budget&quot; required
+          class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+    &lt;option value=&quot;&quot; disabled selected&gt;Choose one&lt;/option&gt;
+    &lt;option value=&quot;under-1k&quot;&gt;Under $1,000&lt;/option&gt;
+    &lt;option value=&quot;1k-5k&quot;&gt;$1,000 - $5,000&lt;/option&gt;
+    &lt;option value=&quot;5k-plus&quot;&gt;$5,000+&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="radio-group-segmented-control-look" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Radio group (segmented control look)</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A styled radio group reads as a set of buttons instead of the browser's default small circles, using <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">peer</code> and <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">:has()</code> so no JavaScript is needed to toggle the selected look:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">has-[:checked]:</code> needs Tailwind v3.4+ (the <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">:has()</code> variant); on an older Tailwind, style the sibling <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;input&gt;</code>'s <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">checked</code> state with <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">peer-checked:</code> on an adjacent element instead.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <fieldset class="flex flex-col gap-1">
+  <legend class="text-sm font-medium">Project type</legend>
+  <div class="flex gap-2">
+    <label class="has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-600 dark:has-[:checked]:bg-brand-500/20 dark:has-[:checked]:text-brand-500 flex-1 cursor-pointer rounded-md border border-gray-300 px-4 py-2 text-center text-sm font-medium dark:border-gray-600">
+      <input type="radio" name="project_type" value="new" class="sr-only" checked>
+      New site
+    </label>
+    <label class="has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-600 dark:has-[:checked]:bg-brand-500/20 dark:has-[:checked]:text-brand-500 flex-1 cursor-pointer rounded-md border border-gray-300 px-4 py-2 text-center text-sm font-medium dark:border-gray-600">
+      <input type="radio" name="project_type" value="redesign" class="sr-only">
+      Redesign
+    </label>
+  </div>
+</fieldset>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;fieldset class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;legend class=&quot;text-sm font-medium&quot;&gt;Project type&lt;/legend&gt;
+  &lt;div class=&quot;flex gap-2&quot;&gt;
+    &lt;label class=&quot;has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-600 dark:has-[:checked]:bg-brand-500/20 dark:has-[:checked]:text-brand-500 flex-1 cursor-pointer rounded-md border border-gray-300 px-4 py-2 text-center text-sm font-medium dark:border-gray-600&quot;&gt;
+      &lt;input type=&quot;radio&quot; name=&quot;project_type&quot; value=&quot;new&quot; class=&quot;sr-only&quot; checked&gt;
+      New site
+    &lt;/label&gt;
+    &lt;label class=&quot;has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-600 dark:has-[:checked]:bg-brand-500/20 dark:has-[:checked]:text-brand-500 flex-1 cursor-pointer rounded-md border border-gray-300 px-4 py-2 text-center text-sm font-medium dark:border-gray-600&quot;&gt;
+      &lt;input type=&quot;radio&quot; name=&quot;project_type&quot; value=&quot;redesign&quot; class=&quot;sr-only&quot;&gt;
+      Redesign
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkbox-group" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Checkbox group</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">text-brand-500</code> on a checkbox/radio input sets its own check/dot color, since browsers render native checkbox and radio marks using <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">currentColor</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">accent-color</code> under the hood; Tailwind's <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">text-*</code> utilities are what set that.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <fieldset class="flex flex-col gap-2">
+  <legend class="text-sm font-medium">What do you need?</legend>
+  <label class="flex items-center gap-2 text-sm">
+    <input type="checkbox" name="needs[]" value="design" class="size-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500/25 dark:border-gray-600">
+    Design
+  </label>
+  <label class="flex items-center gap-2 text-sm">
+    <input type="checkbox" name="needs[]" value="development" class="size-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500/25 dark:border-gray-600">
+    Development
+  </label>
+</fieldset>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;fieldset class=&quot;flex flex-col gap-2&quot;&gt;
+  &lt;legend class=&quot;text-sm font-medium&quot;&gt;What do you need?&lt;/legend&gt;
+  &lt;label class=&quot;flex items-center gap-2 text-sm&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;needs[]&quot; value=&quot;design&quot; class=&quot;size-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500/25 dark:border-gray-600&quot;&gt;
+    Design
+  &lt;/label&gt;
+  &lt;label class=&quot;flex items-center gap-2 text-sm&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;needs[]&quot; value=&quot;development&quot; class=&quot;size-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500/25 dark:border-gray-600&quot;&gt;
+    Development
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="border-t border-ink/10 px-6 py-8 text-center text-sm text-ink/50 dark:border-white/10">
+  Built by <a href="https://bootform.com" class="underline">BootForm</a>. Part of the
+  <a href="https://github.com/BootForm" class="underline">github.com/BootForm</a> org: free templates
+  and a working contact form for whatever you build.
+</footer>
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+<script>
+  // A hand-rolled copy button instead of Prism's own copy-to-clipboard plugin: that plugin
+  // relies on the deprecated document.execCommand('copy'), which modern Chrome frequently
+  // refuses silently, falling back to a "Press Ctrl+C to copy" message instead of copying
+  // anything. navigator.clipboard.writeText() is the reliable modern equivalent.
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.closest('.code-block').querySelector('code').textContent
+      try {
+        await navigator.clipboard.writeText(code)
+        btn.textContent = 'Copied!'
+      } catch {
+        btn.textContent = 'Press Ctrl+C'
+      }
+      setTimeout(() => { btn.textContent = 'Copy' }, 1500)
+    })
+  })
+</script>
+</body>
+</html>

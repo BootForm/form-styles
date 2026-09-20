@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layouts — form-styles</title>
+<meta name="description" content="Field arrangements for a form: stacked, floating label, card, inline, two-column grid.">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+  @theme {
+    --color-ink: #1a1a2e;
+    --color-paper: #fafafa;
+    --color-brand-50: #eef2ff;
+    --color-brand-500: #4f46e5;
+    --color-brand-600: #4338ca;
+  }
+</style>
+<script>
+  // Applied before paint, from a plain <script> (not the "text/tailwindcss" block above, which
+  // only ever holds CSS, never runs as JS) so the toggle below reflects a saved choice on load
+  // instead of flashing light mode for a moment first.
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark')
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<style>
+  pre[class*="language-"] { border-radius: 0; font-size: 0.8125rem; }
+</style>
+</head>
+<body class="bg-paper text-ink antialiased dark:bg-ink dark:text-paper">
+<nav class="sticky top-0 z-10 border-b border-ink/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-ink/90">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="index.html" class="font-bold tracking-tight">form-styles</a>
+    <div class="flex items-center gap-5 text-sm font-medium">
+      <a href="inputs.html" class="hover:text-brand-600">Inputs</a>
+      <a href="states.html" class="hover:text-brand-600">States</a>
+      <a href="layouts.html" class="hover:text-brand-600">Layouts</a>
+      <a href="sections.html" class="hover:text-brand-600">Sections</a>
+      <a href="https://github.com/BootForm/form-styles" class="hover:text-brand-600">GitHub ↗</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
+              class="rounded-md border border-ink/10 px-2 py-1 text-xs dark:border-white/20">
+        <span class="dark:hidden">Dark</span>
+        <span class="hidden dark:inline">Light</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="mx-auto max-w-3xl px-6 py-12">
+<h1 class="text-3xl font-bold tracking-tight">Layouts</h1>
+<p class="mt-3 text-ink/70 dark:text-white/70">How a form's fields are arranged on the page, independent of how any one field is styled.</p>
+
+  <section id="stacked" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Stacked</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The default, and the right choice unless there's a specific reason to use something else: one field per row, label above the input. Fastest to scan, works at any width with no changes:</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <form action="https://f.bootform.com/{form_id}" method="POST" class="flex flex-col gap-4">
+  <div class="flex flex-col gap-1">
+    <label for="name" class="text-sm font-medium">Your name</label>
+    <input id="name" name="name" type="text" required
+           class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="email" class="text-sm font-medium">Your email</label>
+    <input id="email" name="email" type="email" required
+           class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+  </div>
+  <button type="submit" class="self-start rounded-md bg-brand-500 px-5 py-2 font-medium text-white hover:bg-brand-600">Send</button>
+</form>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;flex flex-col gap-4&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;name&quot; class=&quot;text-sm font-medium&quot;&gt;Your name&lt;/label&gt;
+    &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; required
+           class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;email&quot; class=&quot;text-sm font-medium&quot;&gt;Your email&lt;/label&gt;
+    &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; required
+           class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+  &lt;button type=&quot;submit&quot; class=&quot;self-start rounded-md bg-brand-500 px-5 py-2 font-medium text-white hover:bg-brand-600&quot;&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="floating-label" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Floating label</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The label sits inside the field until it's focused or filled, then floats above it. Saves vertical space on a short form; costs a little extra markup and a <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">peer</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">:placeholder-shown</code> trick per field:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">placeholder=" "</code> (a single space, not an empty string) is required for <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">:placeholder-shown</code> to work at all; an input with no <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">placeholder</code> attribute never matches that selector, floating or not, in every browser this trick otherwise works in.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="relative">
+  <input id="name" name="name" type="text" required placeholder=" "
+         class="peer w-full rounded-md border border-gray-300 bg-white px-3 pb-2 pt-5 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+  <label for="name"
+         class="pointer-events-none absolute left-3 top-4 text-gray-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-gray-400">
+    Your name
+  </label>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;relative&quot;&gt;
+  &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; required placeholder=&quot; &quot;
+         class=&quot;peer w-full rounded-md border border-gray-300 bg-white px-3 pb-2 pt-5 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;label for=&quot;name&quot;
+         class=&quot;pointer-events-none absolute left-3 top-4 text-gray-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-gray-400&quot;&gt;
+    Your name
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="card" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Card</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The whole form set inside an elevated, bordered container, separate from the page background; what most of the BootForm VitePress templates' own contact pages use:</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+  <form action="https://f.bootform.com/{form_id}" method="POST" class="flex flex-col gap-4">
+    <!-- fields -->
+  </form>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;rounded-xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8&quot;&gt;
+  &lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;flex flex-col gap-4&quot;&gt;
+    &lt;!-- fields --&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="inline" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Inline</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A single-field form (a newsletter signup, most often) with the input and button on one row instead of stacked; needs <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">sm:</code> breakpoints to fall back to stacked on a narrow screen rather than squeezing both onto one line at 320px wide:</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <form action="https://f.bootform.com/{form_id}" method="POST" class="flex flex-col gap-2 sm:flex-row">
+  <input name="email" type="email" required placeholder="you@example.com"
+         class="flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+  <button type="submit" class="rounded-md bg-brand-500 px-5 py-2 font-medium text-white hover:bg-brand-600">Subscribe</button>
+</form>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;flex flex-col gap-2 sm:flex-row&quot;&gt;
+  &lt;input name=&quot;email&quot; type=&quot;email&quot; required placeholder=&quot;you@example.com&quot;
+         class=&quot;flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;button type=&quot;submit&quot; class=&quot;rounded-md bg-brand-500 px-5 py-2 font-medium text-white hover:bg-brand-600&quot;&gt;Subscribe&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="two-column-grid" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Two-column grid</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Short fields (name, email) side by side, with anything longer (a message) spanning the full width; saves vertical space on a form with several short fields without cramming them onto one row each:</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <form action="https://f.bootform.com/{form_id}" method="POST" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <div class="flex flex-col gap-1">
+    <label for="name" class="text-sm font-medium">Your name</label>
+    <input id="name" name="name" type="text" required
+           class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="email" class="text-sm font-medium">Your email</label>
+    <input id="email" name="email" type="email" required
+           class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+  </div>
+  <div class="flex flex-col gap-1 sm:col-span-2">
+    <label for="message" class="text-sm font-medium">Message</label>
+    <textarea id="message" name="message" rows="4" required
+              class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5"></textarea>
+  </div>
+  <button type="submit" class="self-start rounded-md bg-brand-500 px-5 py-2 font-medium text-white hover:bg-brand-600 sm:col-span-2">Send</button>
+</form>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;grid grid-cols-1 gap-4 sm:grid-cols-2&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;name&quot; class=&quot;text-sm font-medium&quot;&gt;Your name&lt;/label&gt;
+    &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; required
+           class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;email&quot; class=&quot;text-sm font-medium&quot;&gt;Your email&lt;/label&gt;
+    &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; required
+           class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-1 sm:col-span-2&quot;&gt;
+    &lt;label for=&quot;message&quot; class=&quot;text-sm font-medium&quot;&gt;Message&lt;/label&gt;
+    &lt;textarea id=&quot;message&quot; name=&quot;message&quot; rows=&quot;4&quot; required
+              class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;button type=&quot;submit&quot; class=&quot;self-start rounded-md bg-brand-500 px-5 py-2 font-medium text-white hover:bg-brand-600 sm:col-span-2&quot;&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="border-t border-ink/10 px-6 py-8 text-center text-sm text-ink/50 dark:border-white/10">
+  Built by <a href="https://bootform.com" class="underline">BootForm</a>. Part of the
+  <a href="https://github.com/BootForm" class="underline">github.com/BootForm</a> org: free templates
+  and a working contact form for whatever you build.
+</footer>
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+<script>
+  // A hand-rolled copy button instead of Prism's own copy-to-clipboard plugin: that plugin
+  // relies on the deprecated document.execCommand('copy'), which modern Chrome frequently
+  // refuses silently, falling back to a "Press Ctrl+C to copy" message instead of copying
+  // anything. navigator.clipboard.writeText() is the reliable modern equivalent.
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.closest('.code-block').querySelector('code').textContent
+      try {
+        await navigator.clipboard.writeText(code)
+        btn.textContent = 'Copied!'
+      } catch {
+        btn.textContent = 'Press Ctrl+C'
+      }
+      setTimeout(() => { btn.textContent = 'Copy' }, 1500)
+    })
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>States — form-styles</title>
+<meta name="description" content="Focus, validation, success, and submitting states for a form, plus dark mode.">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+  @theme {
+    --color-ink: #1a1a2e;
+    --color-paper: #fafafa;
+    --color-brand-50: #eef2ff;
+    --color-brand-500: #4f46e5;
+    --color-brand-600: #4338ca;
+  }
+</style>
+<script>
+  // Applied before paint, from a plain <script> (not the "text/tailwindcss" block above, which
+  // only ever holds CSS, never runs as JS) so the toggle below reflects a saved choice on load
+  // instead of flashing light mode for a moment first.
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark')
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<style>
+  pre[class*="language-"] { border-radius: 0; font-size: 0.8125rem; }
+</style>
+</head>
+<body class="bg-paper text-ink antialiased dark:bg-ink dark:text-paper">
+<nav class="sticky top-0 z-10 border-b border-ink/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-ink/90">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="index.html" class="font-bold tracking-tight">form-styles</a>
+    <div class="flex items-center gap-5 text-sm font-medium">
+      <a href="inputs.html" class="hover:text-brand-600">Inputs</a>
+      <a href="states.html" class="hover:text-brand-600">States</a>
+      <a href="layouts.html" class="hover:text-brand-600">Layouts</a>
+      <a href="sections.html" class="hover:text-brand-600">Sections</a>
+      <a href="https://github.com/BootForm/form-styles" class="hover:text-brand-600">GitHub ↗</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
+              class="rounded-md border border-ink/10 px-2 py-1 text-xs dark:border-white/20">
+        <span class="dark:hidden">Dark</span>
+        <span class="hidden dark:inline">Light</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="mx-auto max-w-3xl px-6 py-12">
+<h1 class="text-3xl font-bold tracking-tight">States</h1>
+<p class="mt-3 text-ink/70 dark:text-white/70">How a form looks while it's actually being used: focused, invalid, submitting, and after it succeeds.</p>
+
+  <section id="focus" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Focus</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Already part of the baseline in <a class="underline" href="inputs.html">Inputs</a>: <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25</code>. Worth calling out on its own, because it's the one state every field needs and the one most often skipped: a field with no visible focus state fails basic accessibility, and it's the first thing a keyboard user notices.</p>
+  </section>
+
+  <section id="validation-and-error" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Validation and error</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Toggle <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">aria-invalid</code> on the field itself (screen readers announce it, and it's a real, inspectable signal, unlike a CSS class alone) and show the error text right below the field:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Remove <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">aria-invalid</code>, its border/ring classes, and the <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;p&gt;</code> once the field becomes valid again; don't leave a stale error showing after the visitor fixes it.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="email" class="text-sm font-medium">Your email</label>
+  <input id="email" name="email" type="email" required aria-invalid="true" aria-describedby="email-error"
+         class="rounded-md border border-red-400 bg-white px-3 py-2 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/25 dark:border-red-500 dark:bg-white/5">
+  <p id="email-error" class="text-sm text-red-600 dark:text-red-400">Enter a valid email address.</p>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;email&quot; class=&quot;text-sm font-medium&quot;&gt;Your email&lt;/label&gt;
+  &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; required aria-invalid=&quot;true&quot; aria-describedby=&quot;email-error&quot;
+         class=&quot;rounded-md border border-red-400 bg-white px-3 py-2 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/25 dark:border-red-500 dark:bg-white/5&quot;&gt;
+  &lt;p id=&quot;email-error&quot; class=&quot;text-sm text-red-600 dark:text-red-400&quot;&gt;Enter a valid email address.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="success" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Success</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A field-level success state (a green border and a checkmark) for a field that's been validated inline, separate from the form-level "your message was sent" state below:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The whole-form success state, after a real submission, usually replaces the form entirely rather than decorating it:</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex flex-col gap-1">
+  <label for="email" class="text-sm font-medium">Your email</label>
+  <div class="relative">
+    <input id="email" name="email" type="email" required value="you@example.com"
+           class="w-full rounded-md border border-green-400 bg-white px-3 py-2 pr-9 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/25 dark:border-green-500 dark:bg-white/5">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-green-500"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.58l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
+  </div>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;email&quot; class=&quot;text-sm font-medium&quot;&gt;Your email&lt;/label&gt;
+  &lt;div class=&quot;relative&quot;&gt;
+    &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; required value=&quot;you@example.com&quot;
+           class=&quot;w-full rounded-md border border-green-400 bg-white px-3 py-2 pr-9 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/25 dark:border-green-500 dark:bg-white/5&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;currentColor&quot; class=&quot;pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-green-500&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.58l7.3-7.3a1 1 0 0 1 1.4 0Z&quot; clip-rule=&quot;evenodd&quot;/&gt;&lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+    <pre class="mt-3"><code class="language-markup">&lt;div class=&quot;rounded-lg border border-green-200 bg-green-50 p-6 text-center dark:border-green-500/30 dark:bg-green-500/10&quot;&gt;
+  &lt;p class=&quot;font-medium text-green-800 dark:text-green-400&quot;&gt;Thanks - your message was sent.&lt;/p&gt;
+  &lt;p class=&quot;mt-1 text-sm text-green-700/80 dark:text-green-400/70&quot;&gt;We usually reply within a day.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  </section>
+
+  <section id="submitting" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Submitting</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Disable the button and swap its label, so a slow network doesn't invite a double-submit:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70"><code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">disabled:cursor-not-allowed</code> only does anything while the <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">disabled</code> attribute is actually present; toggle the attribute itself from the submit handler, not just a class.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <button type="submit" disabled
+        class="inline-flex items-center gap-2 self-start rounded-md bg-brand-500 px-5 py-2 font-medium text-white opacity-70 disabled:cursor-not-allowed">
+  <svg class="size-4 animate-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.37 0 0 5.37 0 12h4Z"/>
+  </svg>
+  Sending…
+</button>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;button type=&quot;submit&quot; disabled
+        class=&quot;inline-flex items-center gap-2 self-start rounded-md bg-brand-500 px-5 py-2 font-medium text-white opacity-70 disabled:cursor-not-allowed&quot;&gt;
+  &lt;svg class=&quot;size-4 animate-spin&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;
+    &lt;circle class=&quot;opacity-25&quot; cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;4&quot;/&gt;
+    &lt;path class=&quot;opacity-75&quot; fill=&quot;currentColor&quot; d=&quot;M4 12a8 8 0 0 1 8-8V0C5.37 0 0 5.37 0 12h4Z&quot;/&gt;
+  &lt;/svg&gt;
+  Sending…
+&lt;/button&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="dark-mode" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Dark mode</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Every example above already carries its own <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">dark:</code> classes; the pattern to keep consistent across a whole form:</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">- <strong>Borders</strong>: an explicit gray (<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">border-gray-300</code> / <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">dark:border-gray-600</code>), never an   opacity-based color alone (<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">border-black/15</code>), which gets harder to see, not easier, on a dark   background. - <strong>Backgrounds</strong>: an explicit <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">bg-white</code> / <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">dark:bg-white/5</code>, not "no background," so the field   doesn't blend into the page behind it in either mode. - <strong>Status colors</strong> (red/green above): the <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">-400</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">-500</code> shade on a dark background instead of   the same <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">-600</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">-700</code> shade used in light mode, which reads as too dark and low-contrast once   the page itself is dark.</p>
+  </section>
+
+</main>
+<footer class="border-t border-ink/10 px-6 py-8 text-center text-sm text-ink/50 dark:border-white/10">
+  Built by <a href="https://bootform.com" class="underline">BootForm</a>. Part of the
+  <a href="https://github.com/BootForm" class="underline">github.com/BootForm</a> org: free templates
+  and a working contact form for whatever you build.
+</footer>
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+<script>
+  // A hand-rolled copy button instead of Prism's own copy-to-clipboard plugin: that plugin
+  // relies on the deprecated document.execCommand('copy'), which modern Chrome frequently
+  // refuses silently, falling back to a "Press Ctrl+C to copy" message instead of copying
+  // anything. navigator.clipboard.writeText() is the reliable modern equivalent.
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.closest('.code-block').querySelector('code').textContent
+      try {
+        await navigator.clipboard.writeText(code)
+        btn.textContent = 'Copied!'
+      } catch {
+        btn.textContent = 'Press Ctrl+C'
+      }
+      setTimeout(() => { btn.textContent = 'Copy' }, 1500)
+    })
+  })
+</script>
+</body>
+</html>
