@@ -32,6 +32,19 @@ example on this site actually uses (the radio segmented-control pattern on the I
 Prefer the arbitrary form in anything meant to work regardless of which Tailwind version a reader
 has, since a reader copying this into their own project has no guarantee which version they're on.
 
+## Native form controls with their own popup (select, date) need explicit `color-scheme`
+
+A native `<select>`'s dropdown list and a native `<input type="date">`'s calendar popup are
+rendered by the browser itself, not by our CSS, and by default they follow the browser/OS's own
+light-or-dark preference, not the page's own toggle. **Hit in practice 2026-09-20**: reported as
+"the select shows all white until I hover" in both themes, since the popup was defaulting to
+whatever the browser/OS preferred regardless of this page's own light/dark state. Fix: set
+`[color-scheme:light]` and `dark:[color-scheme:dark]` directly on the control (see the Select and
+Date examples on the Inputs page). This gives the browser explicit permission to pick the palette
+that actually matches the page instead of guessing from an unrelated system setting. Any other
+native-popup control added later (`<input type="week">`, `<input type="time">`, a native color
+picker) will need the same treatment.
+
 ## Dark mode toggle
 
 `@custom-variant dark (&:where(.dark, .dark *));` plus a `#theme-toggle` button that flips
