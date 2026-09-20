@@ -188,17 +188,17 @@
 
   <section id="select" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
     <h2 class="text-xl font-bold tracking-tight">Select</h2>
-    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A native <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;select&gt;</code>'s dropdown popup follows the browser/OS's own light-or-dark preference by default, not the page's, which can leave its options rendering as invisible white-on-white (or black-on-black) until you hover one. <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">[color-scheme:light]</code> / <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">dark:[color-scheme:dark]</code> tells the browser explicitly which native palette to use for the parts of the control it renders itself, the same fix the date input above needs for its calendar popup.</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">A native <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;select&gt;</code>'s dropdown popup follows the browser/OS's own light-or-dark preference by default, not the page's, which can leave its options rendering as invisible white-on-white (or black-on-black) until you hover one. <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">[color-scheme:light]</code> / <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">dark:[color-scheme:dark]</code> tells the browser explicitly which native palette to use for the parts of the control it renders itself, the same fix the date input above needs for its calendar popup. <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">color-scheme</code> alone wasn't reliable enough on its own in testing (some Chrome versions still rendered the popup with default colors regardless), so each <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;option&gt;</code> also sets its own <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">background-color</code>/<code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">color</code> directly, which Chrome does honor for the popup list even though it ignores most other CSS on <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;option&gt;</code>.</p>
     <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
       <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
         <div class="flex flex-col gap-1">
   <label for="budget" class="text-sm font-medium">Budget range</label>
   <select id="budget" name="budget" required
           class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 [color-scheme:light] dark:border-gray-600 dark:bg-white/5 dark:[color-scheme:dark]">
-    <option value="" disabled selected>Choose one</option>
-    <option value="under-1k">Under $1,000</option>
-    <option value="1k-5k">$1,000 - $5,000</option>
-    <option value="5k-plus">$5,000+</option>
+    <option value="" disabled selected class="bg-white text-ink dark:bg-ink dark:text-paper">Choose one</option>
+    <option value="under-1k" class="bg-white text-ink dark:bg-ink dark:text-paper">Under $1,000</option>
+    <option value="1k-5k" class="bg-white text-ink dark:bg-ink dark:text-paper">$1,000 - $5,000</option>
+    <option value="5k-plus" class="bg-white text-ink dark:bg-ink dark:text-paper">$5,000+</option>
   </select>
 </div>
       </div>
@@ -208,10 +208,10 @@
   &lt;label for=&quot;budget&quot; class=&quot;text-sm font-medium&quot;&gt;Budget range&lt;/label&gt;
   &lt;select id=&quot;budget&quot; name=&quot;budget&quot; required
           class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 [color-scheme:light] dark:border-gray-600 dark:bg-white/5 dark:[color-scheme:dark]&quot;&gt;
-    &lt;option value=&quot;&quot; disabled selected&gt;Choose one&lt;/option&gt;
-    &lt;option value=&quot;under-1k&quot;&gt;Under $1,000&lt;/option&gt;
-    &lt;option value=&quot;1k-5k&quot;&gt;$1,000 - $5,000&lt;/option&gt;
-    &lt;option value=&quot;5k-plus&quot;&gt;$5,000+&lt;/option&gt;
+    &lt;option value=&quot;&quot; disabled selected class=&quot;bg-white text-ink dark:bg-ink dark:text-paper&quot;&gt;Choose one&lt;/option&gt;
+    &lt;option value=&quot;under-1k&quot; class=&quot;bg-white text-ink dark:bg-ink dark:text-paper&quot;&gt;Under $1,000&lt;/option&gt;
+    &lt;option value=&quot;1k-5k&quot; class=&quot;bg-white text-ink dark:bg-ink dark:text-paper&quot;&gt;$1,000 - $5,000&lt;/option&gt;
+    &lt;option value=&quot;5k-plus&quot; class=&quot;bg-white text-ink dark:bg-ink dark:text-paper&quot;&gt;$5,000+&lt;/option&gt;
   &lt;/select&gt;
 &lt;/div&gt;</code></pre>
       </div>

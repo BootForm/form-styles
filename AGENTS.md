@@ -41,7 +41,17 @@ light-or-dark preference, not the page's own toggle. **Hit in practice 2026-09-2
 whatever the browser/OS preferred regardless of this page's own light/dark state. Fix: set
 `[color-scheme:light]` and `dark:[color-scheme:dark]` directly on the control (see the Select and
 Date examples on the Inputs page). This gives the browser explicit permission to pick the palette
-that actually matches the page instead of guessing from an unrelated system setting. Any other
+that actually matches the page instead of guessing from an unrelated system setting.
+
+**`color-scheme` alone was still reported broken for the select popup after that fix** ("still all
+white in dark mode"), and turned out to be exactly that: real, still needed, but not sufficient by
+itself in the browser tested. The reliable second half: set `background-color`/`color` directly on
+each `<option>` (`dark:bg-ink dark:text-paper` alongside the light-mode equivalents) — Chrome
+specifically honors per-`<option>` background/text color for the popup list, even though it
+ignores almost every other CSS property on `<option>`. Keep both fixes together; `color-scheme`
+alone is a plausible-looking fix that doesn't fully hold up.
+
+Any other
 native-popup control added later (`<input type="week">`, `<input type="time">`, a native color
 picker) will need the same treatment.
 
