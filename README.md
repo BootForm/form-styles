@@ -50,3 +50,7 @@ now a plain, hand-editable HTML file. Add a new example by copying an existing `
   rendering black-on-black in dark mode; without it the picker ignores the page's own dark styling.
 - Prism's `copy-to-clipboard` plugin doesn't work reliably in current Chrome (see above); replaced
   with a small hand-rolled button.
+
+## Licence
+
+MIT. Copy the snippets into any project, commercial ones included.
