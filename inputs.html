@@ -436,13 +436,14 @@
     <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
       <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
         <div class="flex flex-col gap-1">
-  <label for="password" class="text-sm font-medium">Password</label>
-  <input id="password" 
-    name="password"
-    type="password"
-    autocomplete="current-password"
-    class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
-</div>
+          <label for="password" class="text-sm font-medium">Password</label>
+          <input id="password" 
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+            <button id="passwordToggle" type="button" class="cursor-pointer" aria-label="Show password" aria-pressed="false">Show password</button>
+        </div>
       </div>
       <div class="code-block relative">
         <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
@@ -486,6 +487,20 @@
       setTimeout(() => { btn.textContent = 'Copy' }, 1500)
     })
   })
+
+  const passwordInput = document.querySelector("input#password");
+  const passwordToggle = document.querySelector("button#passwordToggle");
+  passwordToggle.addEventListener('click', () => { 
+    if (passwordToggle.ariaPressed === "false") {
+      passwordInput.type = "text";
+      passwordToggle.ariaLabel="Hide password"
+      passwordToggle.ariaPressed = "true"
+    } else {
+      passwordInput.type = "password";
+      passwordToggle.ariaLabel="Show password"
+      passwordToggle.ariaPressed = "false"
+    }
+  });
 </script>
 </body>
 </html>
