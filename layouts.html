@@ -96,9 +96,9 @@
     <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
       <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
         <div class="relative">
-  <input id="name" name="name" type="text" required placeholder=" "
+  <input id="floating-name" name="name" type="text" required placeholder=" "
          class="peer w-full rounded-md border border-gray-300 bg-white px-3 pb-2 pt-5 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
-  <label for="name"
+  <label for="floating-name"
          class="pointer-events-none absolute left-3 top-4 text-gray-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-gray-400">
     Your name
   </label>
@@ -107,9 +107,9 @@
       <div class="code-block relative">
         <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
         <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;relative&quot;&gt;
-  &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; required placeholder=&quot; &quot;
+  &lt;input id=&quot;floating-name&quot; name=&quot;name&quot; type=&quot;text&quot; required placeholder=&quot; &quot;
          class=&quot;peer w-full rounded-md border border-gray-300 bg-white px-3 pb-2 pt-5 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
-  &lt;label for=&quot;name&quot;
+  &lt;label for=&quot;floating-name&quot;
          class=&quot;pointer-events-none absolute left-3 top-4 text-gray-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-gray-400&quot;&gt;
     Your name
   &lt;/label&gt;
@@ -169,13 +169,13 @@
       <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
         <form action="https://f.bootform.com/{form_id}" method="POST" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
   <div class="flex flex-col gap-1">
-    <label for="name" class="text-sm font-medium">Your name</label>
-    <input id="name" name="name" type="text" required
+    <label for="grid-name" class="text-sm font-medium">Your name</label>
+    <input id="grid-name" name="name" type="text" required
            class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
   </div>
   <div class="flex flex-col gap-1">
-    <label for="email" class="text-sm font-medium">Your email</label>
-    <input id="email" name="email" type="email" required
+    <label for="grid-email" class="text-sm font-medium">Your email</label>
+    <input id="grid-email" name="email" type="email" required
            class="rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
   </div>
   <div class="flex flex-col gap-1 sm:col-span-2">
@@ -190,13 +190,13 @@
         <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
         <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;form action=&quot;https://f.bootform.com/{form_id}&quot; method=&quot;POST&quot; class=&quot;grid grid-cols-1 gap-4 sm:grid-cols-2&quot;&gt;
   &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
-    &lt;label for=&quot;name&quot; class=&quot;text-sm font-medium&quot;&gt;Your name&lt;/label&gt;
-    &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; required
+    &lt;label for=&quot;grid-name&quot; class=&quot;text-sm font-medium&quot;&gt;Your name&lt;/label&gt;
+    &lt;input id=&quot;grid-name&quot; name=&quot;name&quot; type=&quot;text&quot; required
            class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
   &lt;/div&gt;
   &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
-    &lt;label for=&quot;email&quot; class=&quot;text-sm font-medium&quot;&gt;Your email&lt;/label&gt;
-    &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; required
+    &lt;label for=&quot;grid-email&quot; class=&quot;text-sm font-medium&quot;&gt;Your email&lt;/label&gt;
+    &lt;input id=&quot;grid-email&quot; name=&quot;email&quot; type=&quot;email&quot; required
            class=&quot;rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
   &lt;/div&gt;
   &lt;div class=&quot;flex flex-col gap-1 sm:col-span-2&quot;&gt;
