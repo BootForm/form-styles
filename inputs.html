@@ -477,8 +477,8 @@
     &lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
-  const passwordInput = document.querySelector(&quot;input#password&quot;);
-  const passwordToggle = document.querySelector(&quot;button#passwordToggle&quot;);
+  const passwordInput = document.getElementById(&quot;password-input&quot;);
+  const passwordToggle = document.getElementById(&quot;passwordToggle&quot;);
   passwordToggle.addEventListener(&#x27;click&#x27;, () => { 
     if (passwordToggle.ariaPressed === &quot;false&quot;) {
       passwordInput.type = &quot;text&quot;;
@@ -529,8 +529,8 @@
     })
   })
 
-  const passwordInput = document.querySelector("input#password");
-  const passwordToggle = document.querySelector("button#passwordToggle");
+  const passwordInput = document.getElementById("password-input");
+  const passwordToggle = document.getElementById("passwordToggle");
   passwordToggle.addEventListener('click', () => { 
     if (passwordToggle.ariaPressed === "false") {
       passwordInput.type = "text";
