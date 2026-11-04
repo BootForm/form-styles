@@ -475,7 +475,23 @@
         &lt;/svg&gt;  
       &lt;/button&gt;
     &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+&lt;script&gt;
+  const passwordInput = document.querySelector(&quot;input#password&quot;);
+  const passwordToggle = document.querySelector(&quot;button#passwordToggle&quot;);
+  passwordToggle.addEventListener(&#x27;click&#x27;, () => { 
+    if (passwordToggle.ariaPressed === &quot;false&quot;) {
+      passwordInput.type = &quot;text&quot;;
+      passwordToggle.ariaLabel=&quot;Hide password&quot;;
+      passwordToggle.ariaPressed = &quot;true&quot;;
+    } else {
+      passwordInput.type = &quot;password&quot;;
+      passwordToggle.ariaLabel=&quot;Show password&quot;;
+      passwordToggle.ariaPressed = &quot;false&quot;;
+    }
+  });
+  &lt;/script&gt;
+</code></pre>
       </div>
     </div>
   </section>
