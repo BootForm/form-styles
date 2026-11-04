@@ -457,6 +457,21 @@
               </button>
             </div>
         </div>
+        <script>
+            const passwordInput = document.getElementById("password-input");
+            const passwordToggle = document.getElementById("passwordToggle");
+            passwordToggle.addEventListener('click', () => { 
+              if (passwordToggle.ariaPressed === "false") {
+                passwordInput.type = "text";
+                passwordToggle.ariaLabel="Hide password"
+                passwordToggle.ariaPressed = "true"
+              } else {
+                passwordInput.type = "password";
+                passwordToggle.ariaLabel="Show password"
+                passwordToggle.ariaPressed = "false"
+              }
+            });
+        </script>
       </div>
       <div class="code-block relative">
         <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
@@ -528,20 +543,6 @@
       setTimeout(() => { btn.textContent = 'Copy' }, 1500)
     })
   })
-
-  const passwordInput = document.getElementById("password-input");
-  const passwordToggle = document.getElementById("passwordToggle");
-  passwordToggle.addEventListener('click', () => { 
-    if (passwordToggle.ariaPressed === "false") {
-      passwordInput.type = "text";
-      passwordToggle.ariaLabel="Hide password"
-      passwordToggle.ariaPressed = "true"
-    } else {
-      passwordInput.type = "password";
-      passwordToggle.ariaLabel="Show password"
-      passwordToggle.ariaPressed = "false"
-    }
-  });
 </script>
 </body>
 </html>
