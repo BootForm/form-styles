@@ -113,6 +113,49 @@
   &lt;p class=&quot;mt-1 text-sm text-green-700/80 dark:text-green-400/70&quot;&gt;We usually reply within a day.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
   </section>
+  <section id="disabled-readonly" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+  <h2 class="text-xl font-bold tracking-tight">Disabled and read-only</h2>
+
+  <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">
+    Disabled fields cannot be edited and are not submitted. Read-only fields cannot be edited either, but their values are still submitted.
+  </p>
+
+  <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+    <div class="grid gap-6 bg-white p-6 sm:grid-cols-2 dark:bg-white/[0.03]">
+
+      <!-- Disabled field -->
+      <div class="flex flex-col gap-2">
+        <label for="disabled-example" class="text-sm font-medium">
+          Disabled field
+        </label>
+
+        <input
+          id="disabled-example"
+          name="disabled-example"
+          type="text"
+          value="Cannot edit this"
+          disabled
+          class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-gray-500 disabled:cursor-not-allowed disabled:opacity-70 dark:border-gray-600 dark:bg-white/5 dark:text-gray-400">
+      </div>
+
+      <!-- Read-only field -->
+      <div class="flex flex-col gap-2">
+        <label for="readonly-example" class="text-sm font-medium">
+          Read-only field
+        </label>
+
+        <input
+          id="readonly-example"
+          name="readonly-example"
+          type="text"
+          value="You can copy this"
+          readonly
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 read-only:cursor-text read-only:bg-gray-50 dark:border-gray-600 dark:bg-white/5 dark:read-only:bg-white/10">
+      </div>
+
+    </div>
+  </div>
+</section>
 
   <section id="submitting" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
     <h2 class="text-xl font-bold tracking-tight">Submitting</h2>
