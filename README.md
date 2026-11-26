@@ -52,6 +52,12 @@ now a plain, hand-editable HTML file. Add a new example by copying an existing `
 - Prism's `copy-to-clipboard` plugin doesn't work reliably in current Chrome (see above); replaced
   with a small hand-rolled button.
 
+## Like it?
+
+If this saved you some time, a star on this repo helps other people find it. Everything else
+BootForm publishes is at [github.com/BootForm](https://github.com/BootForm): more templates, form
+styles and page sections, all free to copy.
+
 ## Licence
 
 MIT. Copy the snippets into any project, commercial ones included.
