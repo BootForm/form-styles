@@ -114,63 +114,65 @@
 &lt;/div&gt;</code></pre>
   </section>
 
- <section id="disabled-readonly" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
-      <h2 class="text-xl font-bold tracking-tight">Disabled and read-only</h2>
-      <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">
+  <section id="disabled-readonly" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Disabled and read-only</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">
         Disabled fields cannot be edited and are not submitted. Read-only fields cannot be edited either, but their values are still submitted.
-      </p>
-      <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
-        <div class="grid gap-6 bg-white p-6 sm:grid-cols-2 dark:bg-white/[0.03]">
-          <!-- Disabled field -->
-          <div class="flex flex-col gap-1">
-            <label for="disabled-example" class="text-sm font-medium">
-              Discount code
-            </label>
-            <input
-              id="disabled-example"
-              name="discount-code"
-              type="text"
-              value="PREMIUM20"
-              disabled
-              class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 dark:border-gray-600 dark:bg-white/5 dark:disabled:bg-white/10 dark:disabled:text-gray-400">
-            <p class="text-sm text-ink/60 dark:text-white/60">
+    </p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="grid gap-6 bg-white p-6 sm:grid-cols-2 dark:bg-white/[0.03]">
+      <!-- Disabled field -->
+        <div class="flex flex-col gap-1">
+          <label for="disabled-example" class="text-sm font-medium">
+            Discount code
+           </label>
+           <input
+             id="disabled-example"
+             aria-describedby="discount-code-help"
+             name="discount-code"
+             type="text"
+             value="PREMIUM20"
+             disabled
+             class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 dark:border-gray-600 dark:bg-white/5 dark:disabled:bg-white/10 dark:disabled:text-gray-400">
+           <p id="discount-code-help" class="text-sm text-ink/60 dark:text-white/60">
               Discount codes are available only on another plan.
-            </p>
-          </div>
-          <!-- Read-only field -->
-          <div class="flex flex-col gap-1">
-            <label for="readonly-example" class="text-sm font-medium">
-              Order number
-            </label>
-            <input
+           </p>
+        </div>
+        <!-- Read-only field -->
+        <div class="flex flex-col gap-1">
+          <label for="readonly-example" class="text-sm font-medium">
+             Order number
+           </label>
+           <input
               id="readonly-example"
               name="order-number"
               type="text"
               value="BF-10482"
               readonly
               class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 read-only:cursor-text read-only:bg-gray-50 dark:border-gray-600 dark:bg-white/5 dark:read-only:bg-white/10">
-          </div>
+           </div>
         </div>
-        <div class="code-block relative">
-          <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
-          <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;grid gap-6 bg-white p-6 sm:grid-cols-2 dark:bg-white/[0.03]&quot;&gt;
-  &lt;!-- Disabled field --&gt;
-  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
-    &lt;label for=&quot;disabled-example&quot; class=&quot;text-sm font-medium&quot;&gt;Discount code&lt;/label&gt;
-    &lt;input id=&quot;disabled-example&quot; name=&quot;discount-code&quot; type=&quot;text&quot; value=&quot;PREMIUM20&quot; disabled
-           class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 dark:border-gray-600 dark:bg-white/5 dark:disabled:bg-white/10 dark:disabled:text-gray-400&quot;&gt;
-    &lt;p class=&quot;text-sm text-ink/60 dark:text-white/60&quot;&gt;Discount codes are available only on another plan.&lt;/p&gt;
+    <div class="code-block relative">
+      <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+      <pre class="!m-0 !rounded-none"><code class="language-markup">
+        &lt;!-- Disabled field --&gt;
+        &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+          &lt;label for=&quot;disabled-example&quot; class=&quot;text-sm font-medium&quot;&gt;Discount code&lt;/label&gt;
+          &lt;input id=&quot;disabled-example&quot; name=&quot;discount-code&quot; type=&quot;text&quot; value=&quot;PREMIUM20&quot; disabled
+          aria-describedby=&quot;discount-code-help&quot;
+            class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 dark:border-gray-600 dark:bg-white/5 dark:disabled:bg-white/10 dark:disabled:text-gray-400&quot;&gt;
+         &lt;p id=&quot;discount-code-help&quot; class=&quot;text-sm text-ink/60 dark:text-white/60&quot;&gt;Discount codes are available only on another plan.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;!-- Read-only field --&gt;
+      &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+        &lt;label for=&quot;readonly-example&quot; class=&quot;text-sm font-medium&quot;&gt;Order number&lt;/label&gt;
+        &lt;input id=&quot;readonly-example&quot; name=&quot;order-number&quot; type=&quot;text&quot; value=&quot;BF-10482&quot; readonly
+          class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 read-only:cursor-text read-only:bg-gray-50 dark:border-gray-600 dark:bg-white/5 dark:read-only:bg-white/10&quot;&gt;
   &lt;/div&gt;
-  &lt;!-- Read-only field --&gt;
-  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
-    &lt;label for=&quot;readonly-example&quot; class=&quot;text-sm font-medium&quot;&gt;Order number&lt;/label&gt;
-    &lt;input id=&quot;readonly-example&quot; name=&quot;order-number&quot; type=&quot;text&quot; value=&quot;BF-10482&quot; readonly
-           class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 read-only:cursor-text read-only:bg-gray-50 dark:border-gray-600 dark:bg-white/5 dark:read-only:bg-white/10&quot;&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-        </div>
+  </code></pre>
       </div>
-    </section>
+  </div>
+</section>
 
   <section id="submitting" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
     <h2 class="text-xl font-bold tracking-tight">Submitting</h2>
