@@ -168,6 +168,52 @@
     </div>
   </section>
 
+  <section id="input-prefix-suffix" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Input prefix and suffix</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Use fixed text to show the expected format. Prefixes and suffixes are plain text, not part of the input value, so the backend receives <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">example.com</code>, not <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">https://example.com</code>. The website input uses <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">type="text"</code>, because <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">type="url"</code> rejects a value without a scheme.</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <div class="flex w-full max-w-sm flex-col gap-1">
+  <label for="website-prefix-input" class="text-sm font-medium">Your website</label>
+  <div class="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+    <span class="text-sm text-ink/50 dark:text-white/50">https://</span>
+    <input id="website-prefix-input" name="website" type="text" autocomplete="url" placeholder="example.com"
+           class="min-w-0 flex-1 bg-transparent outline-none">
+  </div>
+</div>
+        <div class="flex w-full max-w-sm flex-col gap-1">
+  <label for="budget-prefix-input" class="text-sm font-medium">Budget</label>
+  <div class="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+    <span class="text-sm text-ink/50 dark:text-white/50">€</span>
+    <input id="budget-prefix-input" name="budget" type="text" inputmode="decimal" placeholder="500"
+           class="min-w-0 flex-1 bg-transparent outline-none">
+    <span class="text-sm text-ink/50 dark:text-white/50">/month</span>
+  </div>
+</div>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;div class=&quot;flex w-full max-w-sm flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;website-prefix-input&quot; class=&quot;text-sm font-medium&quot;&gt;Your website&lt;/label&gt;
+  &lt;div class=&quot;flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+    &lt;span class=&quot;text-sm text-ink/50 dark:text-white/50&quot;&gt;https://&lt;/span&gt;
+    &lt;input id=&quot;website-prefix-input&quot; name=&quot;website&quot; type=&quot;text&quot; autocomplete=&quot;url&quot; placeholder=&quot;example.com&quot;
+           class=&quot;min-w-0 flex-1 bg-transparent outline-none&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;flex w-full max-w-sm flex-col gap-1&quot;&gt;
+  &lt;label for=&quot;budget-prefix-input&quot; class=&quot;text-sm font-medium&quot;&gt;Budget&lt;/label&gt;
+  &lt;div class=&quot;flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+    &lt;span class=&quot;text-sm text-ink/50 dark:text-white/50&quot;&gt;€&lt;/span&gt;
+    &lt;input id=&quot;budget-prefix-input&quot; name=&quot;budget&quot; type=&quot;text&quot; inputmode=&quot;decimal&quot; placeholder=&quot;500&quot;
+           class=&quot;min-w-0 flex-1 bg-transparent outline-none&quot;&gt;
+    &lt;span class=&quot;text-sm text-ink/50 dark:text-white/50&quot;&gt;/month&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
   <section id="file-upload" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
     <h2 class="text-xl font-bold tracking-tight">File upload</h2>
     <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Native <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;input type="file"&gt;</code> is nearly impossible to style directly across browsers; the reliable pattern is hiding it and styling a <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">&lt;label&gt;</code> that triggers it instead:</p>
