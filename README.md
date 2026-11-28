@@ -19,8 +19,8 @@ Astro, Hugo, Jekyll, Eleventy, Svelte and VitePress. This repo is styling only.
 ## What's in here
 
 - **[Inputs](https://bootform.github.io/form-styles/inputs.html)**: date, time, number, phone,
-  file upload, select, textarea with character counter, range slider, radio group, toggle switch,
-  checkbox group, password.
+  prefix and suffix, file upload, select, textarea with character counter, range slider, radio
+  group, toggle switch, checkbox group, password.
 - **[States](https://bootform.github.io/form-styles/states.html)**: focus, validation/error,
   success, submitting, and dark mode.
 - **[Layouts](https://bootform.github.io/form-styles/layouts.html)**: stacked, floating label,
