@@ -153,6 +153,55 @@
     </div>
   </section>
 
+  <section id="required-and-optional" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
+    <h2 class="text-xl font-bold tracking-tight">Required and optional</h2>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Tell the visitor which fields they must fill in before they press Submit. Mark the minority: when most fields are optional, put a red <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">*</code> on the required ones. When most fields are required, as in a contact form, mark the optional ones with (optional) instead and leave the required ones bare.</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">The <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">*</code> is only a visual hint, not the validation: keep <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">required</code> on the inputs themselves, and wrap the star in <code class="rounded bg-ink/5 px-1 py-0.5 text-[0.85em] dark:bg-white/10">aria-hidden="true"</code> so a screen reader does not announce "Name star required" (it already announces "required" from the attribute).</p>
+    <div class="not-prose mt-4 overflow-hidden rounded-xl border border-ink/10 dark:border-white/10">
+      <div class="flex flex-wrap items-center justify-center gap-4 bg-white p-6 dark:bg-white/[0.03]">
+        <form class="flex w-full max-w-sm flex-col gap-4">
+          <p class="text-sm text-ink/70 dark:text-white/70">Fields marked <span aria-hidden="true" class="text-red-600 dark:text-red-400">*</span> are required.</p>
+          <div class="flex flex-col gap-1">
+            <label for="markers-name" class="text-sm font-medium">Name <span aria-hidden="true" class="text-red-600 dark:text-red-400">*</span></label>
+            <input id="markers-name" name="name" type="text" required autocomplete="name"
+                   class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="markers-email" class="text-sm font-medium">Email <span aria-hidden="true" class="text-red-600 dark:text-red-400">*</span></label>
+            <input id="markers-email" name="email" type="email" required autocomplete="email"
+                   class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="markers-phone" class="text-sm font-medium">Phone <span class="text-sm font-normal text-ink/60 dark:text-white/60">(optional)</span></label>
+            <input id="markers-phone" name="phone" type="tel" autocomplete="tel"
+                   class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5">
+          </div>
+        </form>
+      </div>
+      <div class="code-block relative">
+        <button type="button" class="copy-btn absolute right-3 top-3 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white hover:bg-white/20">Copy</button>
+        <pre class="!m-0 !rounded-none"><code class="language-markup">&lt;form class=&quot;flex w-full max-w-sm flex-col gap-4&quot;&gt;
+  &lt;p class=&quot;text-sm text-ink/70 dark:text-white/70&quot;&gt;Fields marked &lt;span aria-hidden=&quot;true&quot; class=&quot;text-red-600 dark:text-red-400&quot;&gt;*&lt;/span&gt; are required.&lt;/p&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;markers-name&quot; class=&quot;text-sm font-medium&quot;&gt;Name &lt;span aria-hidden=&quot;true&quot; class=&quot;text-red-600 dark:text-red-400&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+    &lt;input id=&quot;markers-name&quot; name=&quot;name&quot; type=&quot;text&quot; required autocomplete=&quot;name&quot;
+           class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;markers-email&quot; class=&quot;text-sm font-medium&quot;&gt;Email &lt;span aria-hidden=&quot;true&quot; class=&quot;text-red-600 dark:text-red-400&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+    &lt;input id=&quot;markers-email&quot; name=&quot;email&quot; type=&quot;email&quot; required autocomplete=&quot;email&quot;
+           class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+    &lt;label for=&quot;markers-phone&quot; class=&quot;text-sm font-medium&quot;&gt;Phone &lt;span class=&quot;text-sm font-normal text-ink/60 dark:text-white/60&quot;&gt;(optional)&lt;/span&gt;&lt;/label&gt;
+    &lt;input id=&quot;markers-phone&quot; name=&quot;phone&quot; type=&quot;tel&quot; autocomplete=&quot;tel&quot;
+           class=&quot;w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 dark:border-gray-600 dark:bg-white/5&quot;&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
   <section id="submitting" class="scroll-mt-24 border-b border-ink/10 py-10 first:pt-0 last:border-0 dark:border-white/10">
     <h2 class="text-xl font-bold tracking-tight">Submitting</h2>
     <p class="mt-2 text-sm leading-relaxed text-ink/70 dark:text-white/70">Disable the button and swap its label, so a slow network doesn't invite a double-submit:</p>
